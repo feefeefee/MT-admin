@@ -8,8 +8,9 @@
         "dev": "vite",
         "lint:eslint": "eslint --ext .js,.jsx,.vue,.ts,.tsx --fix --quiet ./",
         "lint:stylelint": "stylelint ./**/*.{css,less,vue,html} --fix",
-        "prettier": "prettier --write ./**/*.{html,vue,ts,cjs,json,md}",
+        "lint:prettier": "prettier --write ./**/*.{html,vue,ts,cjs,json,md}",
         "lint": "npm run lint:eslint && npm run lint:stylelint",
+        "lint:lint-staged": "lint-staged",
         "prepare": "husky install"
     },
     "repository": {
@@ -24,8 +25,11 @@
     },
     "homepage": "https://github.com/feefeefee/MT-admin#readme",
     "devDependencies": {
+        "@commitlint/cli": "^17.6.3",
+        "@commitlint/config-conventional": "^17.6.3",
         "@typescript-eslint/eslint-plugin": "^5.43.0",
         "@vitejs/plugin-vue": "^4.2.1",
+        "czg": "^1.6.1",
         "eslint": "^8.0.1",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-prettier": "^4.2.1",
@@ -33,6 +37,7 @@
         "husky": "^8.0.3",
         "less": "^4.1.3",
         "less-loader": "^11.1.0",
+        "lint-staged": "^13.2.2",
         "postcss": "^8.4.23",
         "postcss-html": "^1.5.0",
         "postcss-less": "^6.0.0",
@@ -52,5 +57,20 @@
     },
     "dependencies": {
         "vue": "^3.2.47"
+    },
+    "lint-staged": {
+        "**/*.{js,jsx,tsx,ts,vue}": [
+            "npm run lint:eslint",
+            "git add ."
+        ],
+        "**/*.{less,vue,css}": [
+            "npm run lint:stylelint",
+            "git add ."
+        ]
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
     }
 }

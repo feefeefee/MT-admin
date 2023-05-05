@@ -1,7 +1,8 @@
 module.exports = {
     env: {
         browser: true,
-        es2021: true
+        es2021: true,
+        node: true
     },
     extends: [
         'plugin:vue/vue3-recommended',
@@ -17,5 +18,7 @@ module.exports = {
         parser: '@typescript-eslint/parser'
     },
     plugins: ['vue', '@typescript-eslint'],
-    rules: {}
+    rules: {
+        '@typescript-eslint/no-var-requires': 'off'
+    }
 }
